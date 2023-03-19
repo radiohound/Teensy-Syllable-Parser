@@ -20,6 +20,7 @@ void setup() {
   String stops = "bcdgtkpqxhj";
   String approximates = "";
   String syllable = "";
+  int syllableCount = 0;
   int vowelCount = 0; //
   String final_sylset = "";
   char letter;
@@ -54,6 +55,7 @@ void setup() {
   // SSP syllabification follows
   if (vowelCount == 1)  { //finalize word immediately if monosyllabic
     final_sylset.concat(word_entry);
+    syllableCount = 1;
   }
   if (vowelCount != 1)  {
     syllable = "";    //prepare empty sylable to build upon
@@ -61,6 +63,7 @@ void setup() {
       letter = sylset.charAt(i);
       if (i == 0) {   //if its the first letter, append (concat) immediately
         syllable.concat(letter);
+        syllableCount++;
       } else {
         //add whatever is remaining at end of word, last letter 
         if (i == sylset.length() -1)  {
@@ -90,18 +93,21 @@ void setup() {
             syllable.concat(letter);   
             final_sylset.concat(syllable);
             syllable = "-"; //
+            syllableCount++;
         // if phoneme value is less than preceeding value and following value
         } else if ((i < sylset.length() -1) && (sylset.charAt(i+1) < sylset.charAt(i+3)) && (sylset.charAt(i+1) < sylset.charAt(i-1))) {
             // append and break syllable BEFORE appending letter at index in new syllable
             final_sylset.concat(syllable);
             syllable = "-"; //
             syllable.concat(letter);
+            syllableCount++;
         // if phoneme value is less than preceeding value and equal to following value
         } else if ((i < sylset.length() -1) && (sylset.charAt(i+1) == sylset.charAt(i+3)) && (sylset.charAt(i+1) < sylset.charAt(i-1))) {
             //append and break syllable BEFORE appending letter at index in new syllable
             syllable.concat(letter);   
             final_sylset.concat(syllable);
-            syllable = "-"; //        
+            syllable = "-"; //    
+            syllableCount++;
         }
       }
     }
@@ -109,7 +115,7 @@ void setup() {
   final_sylset.concat(syllable);
   Serial.println(final_sylset); 
   Serial.println(sylset); //Shows letters and values assigned to each
-  //Serial.println(vowelCount); 
+  Serial.println(syllableCount); 
   
 }  //end of setup
 
