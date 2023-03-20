@@ -1,7 +1,7 @@
 // This program syllabifies words based on the Sonority Sequencing Principle (SSP)
 // Originally created at UC Berkeley 2015
 // Original Authors: Christopher Hench & Alex Estes © 2016
-// Ported from https://github.com/finguist/syllabipy
+// Ported from https://github.com/henchc/syllabipy
 // to work on a Teensy 4.0 Arduino by Walter Dunckel
 // Example word entry justification - jus-ti-fi-ca-tion - j0u5s2t0i5f2i5c0a5t0i5o5n3
 
